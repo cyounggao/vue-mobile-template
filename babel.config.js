@@ -1,4 +1,5 @@
 module.exports = {
+	presets: ["@vue/cli-plugin-babel/preset"],
 	plugins: [
 		['import', {
 			libraryName: 'vant',
@@ -6,7 +7,6 @@ module.exports = {
 			style: true
 		}, 'vant']
 	],
-	presets: ["@vue/cli-plugin-babel/preset"],
 	'env': {
 		'development': {
 			'plugins': ['dynamic-import-node']
