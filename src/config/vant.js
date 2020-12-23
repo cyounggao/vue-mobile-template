@@ -1,5 +1,5 @@
-import Vue from "vue"
-import { Tabbar, TabbarItem } from 'vant';
+import Vue from 'vue'
+import { Tabbar, TabbarItem } from 'vant'
 
-Vue.use(Tabbar);
-Vue.use(TabbarItem);
+Vue.use(Tabbar)
+Vue.use(TabbarItem)

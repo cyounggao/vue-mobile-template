@@ -15,9 +15,9 @@ npm run dev
 npm run build
 ```
 
-### Run your unit tests
+### Compiles and minifies for test
 ```
-npm run test:unit
+npm run test
 ```
 
 ### Lints and fixes files
