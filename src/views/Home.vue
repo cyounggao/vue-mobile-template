@@ -4,8 +4,8 @@
       <p v-for="item in 4" :key="item">头部</p>
     </div>
     <div class="wrap">
-      <p v-for="item in 30" :key="item">
-        <input v-model="value" type="text" placeholder="hello word">
+      <p @click="pageAction('/list')">
+        去列表页
       </p>
     </div>
     <van-tabbar v-model="active">
@@ -20,7 +20,7 @@
 <script>
 import { getDemo } from '@/api/home.js'
 export default {
-  name: 'Home',
+  name: 'home',
   data() {
     return {
       value: '',
@@ -28,15 +28,21 @@ export default {
       list: []
     }
   },
-  created() {
-    this.getDemoData()
-  },
+ created() {
+ 	console.log('home: created')
+ },
+ activated() {
+ 	console.log('home: activated')
+ },
   methods: {
     getDemoData() {
       getDemo().then(res => {
         this.list = res.data
       })
-    }
+    },
+	pageAction(url) {
+		this.$router.push(url)
+	}
   }
 }
 </script>

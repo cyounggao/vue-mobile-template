@@ -81,14 +81,15 @@ service.interceptors.response.use(
         message: res.msg || '网络开小差了',
         duration: 1.5 * 1000
       })
-      return Promise.reject(new Error(res.message || 'Error'))
+      return Promise.reject(new Error(res.msg || 'Error'))
     }
   },
   error => {
     store.commit('app/CHANGE_COUNT', 0)
     Toast.clear()
+	let msg = error.response && error.response.data && error.response.data.msg
     Toast({
-      message: error.response.data.msg || '网络开小差了',
+      message: msg || '网络开小差了',
       duration: 2 * 1000
     })
     return Promise.reject(error)
