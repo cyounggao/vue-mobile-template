@@ -1,38 +1,38 @@
 <template>
-	<layout>
-		<div class="wrap">
-			<p @click="pageAction('/detail' ,item)" v-for="item in 30" :key="item">
-				列表项{{item}}
-			</p>
-		</div>
-	</layout>
+  <layout>
+    <div class="wrap">
+      <p v-for="item in 30" :key="item" @click="pageAction('/detail', item)">
+        列表项{{ item }}
+      </p>
+    </div>
+  </layout>
 </template>
 
 <script>
-	export default {
-		name: 'list',
-		data() {
-			return {
-				list: []
-			}
-		},
-		created() {
-			console.log('list: created')
-		},
-		activated() {
-			console.log('list: activated')
-		},
-		methods: {
-			pageAction(url, id) {
-				this.$router.push({
-					path: url,
-					query: {
-						id: id
-					}
-				})
-			}
-		}
-	}
+export default {
+  name: 'List',
+  data() {
+    return {
+      list: []
+    }
+  },
+  created() {
+    console.log('list: created')
+  },
+  activated() {
+    console.log('list: activated')
+  },
+  methods: {
+    pageAction(url, id) {
+      this.$router.push({
+        path: url,
+        query: {
+          id: id
+        }
+      })
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">

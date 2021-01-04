@@ -21,7 +21,7 @@ export default {
   mounted() {
     const top = this.$refs.header.clientHeight
     const section = this.$refs.section
-	const bottom = this.$refs.footer.clientHeight
+    const bottom = this.$refs.footer.clientHeight
     section.style.marginTop = `${top}px`
     setTimeout(() => {
       section.style.paddingBottom = `${bottom}px`

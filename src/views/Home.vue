@@ -18,9 +18,11 @@
 </template>
 
 <script>
-import { getDemo } from '@/api/home.js'
+import {
+  getDemo
+} from '@/api/home.js'
 export default {
-  name: 'home',
+  name: 'Home',
   data() {
     return {
       value: '',
@@ -28,51 +30,52 @@ export default {
       list: []
     }
   },
- created() {
- 	console.log('home: created')
- },
- activated() {
- 	console.log('home: activated')
- },
+  created() {
+    console.log('home: created')
+  },
+  activated() {
+    console.log('home: activated')
+  },
   methods: {
     getDemoData() {
       getDemo().then(res => {
         this.list = res.data
       })
     },
-	pageAction(url) {
-		this.$router.push(url)
-	}
+    pageAction(url) {
+      this.$router.push(url)
+    }
   }
 }
 </script>
 
 <style scoped lang="scss">
-.header {
-  height: 0.9rem;
-  background: #ccc;
-  text-align: center;
-  font-size: 0.32rem;
-  line-height: 0.9rem;
-  color: #fff;
-}
+	.header {
+		height: 0.9rem;
+		background: #ccc;
+		text-align: center;
+		font-size: 0.32rem;
+		line-height: 0.9rem;
+		color: #fff;
+	}
 
-.wrap {
-  padding-bottom: 1rem;
-  p {
-    line-height: 0.8rem;
-    border-bottom: 0.01rem solid #eee;
-    padding-left: 0.3rem;
-    font-size: 0.32rem;
-  }
-}
+	.wrap {
+		padding-bottom: 1rem;
 
-.footer {
-  background: $mainColor;
-  height: 1rem;
-  line-height: 1rem;
-  color: #fff;
-  text-align: center;
-  font-size: 0.32rem;
-}
+		p {
+			line-height: 0.8rem;
+			border-bottom: 0.01rem solid #eee;
+			padding-left: 0.3rem;
+			font-size: 0.32rem;
+		}
+	}
+
+	.footer {
+		background: $mainColor;
+		height: 1rem;
+		line-height: 1rem;
+		color: #fff;
+		text-align: center;
+		font-size: 0.32rem;
+	}
 </style>

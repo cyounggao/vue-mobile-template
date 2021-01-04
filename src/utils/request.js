@@ -87,7 +87,7 @@ service.interceptors.response.use(
   error => {
     store.commit('app/CHANGE_COUNT', 0)
     Toast.clear()
-	let msg = error.response && error.response.data && error.response.data.msg
+    const msg = error.response && error.response.data && error.response.data.msg
     Toast({
       message: msg || '网络开小差了',
       duration: 2 * 1000
