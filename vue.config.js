@@ -6,9 +6,9 @@ const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 function resolve(dir) {
   return path.join(__dirname, dir);
 }
-const name = defaultSettings.title || ""; // page title
-
-const port = process.env.port || process.env.npm_config_port || 5000; // dev port
+const name = defaultSettings.title || "";
+const port = process.env.port || process.env.npm_config_port || 5000;
+const baseApi = process.env.VUE_APP_BASE_API
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
 module.exports = {
@@ -25,17 +25,17 @@ module.exports = {
       errors: true
     },
     proxy: {
-      [process.env.VUE_APP_BASE_API]: {
+      [baseApi]: {
         target: defaultSettings.target,
         changeOrigin: true,
         pathRewrite: {
-          ["^" + process.env.VUE_APP_BASE_API]: process.env.VUE_APP_BASE_API
+          ["^" + baseApi]: baseApi
         }
       }
     }
   },
   css: {
-    extract: true,
+    extract: process.env.NODE_ENV !== "development",
     loaderOptions: {
       postcss: {
         plugins: [

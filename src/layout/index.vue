@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <header ref="header" class="layout-header">
+    <header ref="header" class="layout-header" v-if="noHeader">
       <slot name="header" />
     </header>
     <section ref="section" class="layout-section">
@@ -15,11 +15,17 @@
 <script>
 export default {
   name: 'Layout',
+  props: {
+	  noHeader: {
+		  type: Boolean,
+		  default: true
+	  }
+  },
   data() {
     return {}
   },
   mounted() {
-    const top = this.$refs.header.clientHeight
+    const top = this.noHeader ? this.$refs.header.clientHeight : 0
     const section = this.$refs.section
     const bottom = this.$refs.footer.clientHeight
     section.style.marginTop = `${top}px`
@@ -59,7 +65,7 @@ export default {
     width: 100%;
   }
   .layout-footer {
-    background-color: $mainBg;
+    background-color: $bgColor;
   }
 }
 </style>

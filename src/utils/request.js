@@ -11,16 +11,16 @@ const service = axios.create({
 })
 // 发请求之前
 /* config参数
-	notLoading: 请求是否不显示加载框，默认显示
+	noLoad: 请求是否不显示加载框，默认显示
 	formData: post时参数是否用form-data形式传，默认json形式
 	method: 请求方式，默认post
 	data: 请求的参数
-	sequence： axios串联时的先后顺序，first:第一个(执行完毕后计数不减1) / mid:中间的 / last:最后一个(执行前计数不加1),默认mid
- */
+	seq： axios串联时的先后顺序，f:第一个(执行完毕后计数不减1) / m:中间的 / l:最后一个(执行前计数不加1),默认m
+*/
 service.interceptors.request.use(
   config => {
     config.method = config.method || 'post'
-    config.sequence = config.sequence || 'mid'
+    config.seq = config.seq || 'm'
     if (config.method === 'post' && config.formData) {
       // form-data形式传参要序列化
       config.headers['Content-Type'] = 'application/x-www-form-urlencoded'
@@ -36,8 +36,8 @@ service.interceptors.request.use(
       }
     }
     if (
-      (config.sequence === 'mid' || config.sequence === 'first') &&
-      !config.notLoading
+      (config.seq === 'm' || config.seq === 'f') &&
+      !config.noLoad
     ) {
       if (store.getters.requserCount === 0) {
         Toast.loading({
@@ -59,9 +59,9 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     if (
-      (response.config.sequence === 'mid' ||
-        response.config.sequence === 'last') &&
-      !response.config.notLoading
+      (response.config.seq === 'm' ||
+        response.config.seq === 'l') &&
+      !response.config.noLoad
     ) {
       store.commit('app/CHANGE_COUNT', store.getters.requserCount - 1)
       if (store.getters.requserCount === 0) {

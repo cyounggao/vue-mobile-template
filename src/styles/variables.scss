@@ -1,3 +1,18 @@
-$mainText:#101010;
-$mainColor:#FF9900;
-$mainBg:#F8F8F8;
+// 主题切换
+
+// 主要用于可点击按钮背景色，可点击字体颜色，系统主题色
+$mainColor:var(--mainColor,#FF9900);
+// 主要用于公告等提示内容文字颜色
+$promptColor:var(--promptColor,#F5BB1F);
+// 主要用于警示性、消息提示、报错等
+$errorColor:var(--errorColor,#FF3148);
+// 主要用于说明性文字、页面icon
+$explainColor:var(--explainColor,#898C9B);
+// 主要用于输入框/选择框提示性文字、分割线
+$placeholderColor:var(--placeholderColor,#C7C8D0);
+// 页面背景底色
+$bgColor:var(--bgColor,#F8F8F8);
+// 主要用于模块背景色、深色背景下文字
+$fontDarkColor:var(--fontDarkColor,#FFFFFF);
+// 主要用于浅色背景下的主要文字颜色
+$fontLightColor:var(--fontlightColor,#101010);
