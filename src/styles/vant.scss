@@ -1,7 +1,14 @@
-.van-picker__confirm{
+@mixin fontColor {
     color: $mainColor !important;
-  }
-  
-  .van-picker__cancel, .van-picker__confirm{
-      font-size: 0.32rem !important;
-  }
+}
+.van-picker__confirm {
+    @include fontColor
+}
+
+.van-picker__cancel,
+.van-picker__confirm {
+    font-size: 0.32rem !important;
+}
+.van-tabbar-item--active{
+    @include fontColor
+}

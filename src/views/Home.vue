@@ -5,12 +5,31 @@
     </div>
     <div class="wrap">
       <p @click="pageAction('/list')">去列表页</p>
+      <down-select
+        label="选择主题"
+        :list="themeConfigOptions"
+        v-model="themeValue"
+        @selectChange="selectTheme"
+      />
       <tiled-select
-        disabled
-        label="选项"
+        label="选择主题"
+        type="1"
+        :list="themeConfigOptions"
+        v-model="themeValue"
+        @selectChange="selectTheme"
+      ></tiled-select>
+      <tiled-select
+        label="单选"
         type="1"
         :list="list"
         v-model="selectValue"
+        @selectChange="selectChange"
+      ></tiled-select>
+      <tiled-select
+        label="多选"
+        type="2"
+        :list="list"
+        v-model="selectValue1"
         @selectChange="selectChange"
       ></tiled-select>
       <down-select
@@ -50,11 +69,17 @@ export default {
         { name: "选项三", value: "3" },
         { name: "选项四", value: "4" },
       ],
+      themeConfigOptions: [
+        { name: '橙色',value: 'orange'},
+        { name: '绿色',value: 'green'}
+      ],
+      themeValue: '',
       selectValue: "2",
-      columns: ['杭州', '宁波', '温州', '绍兴', '湖州', '嘉兴', '金华', '衢州']
+      selectValue1: "",
     };
   },
   created() {
+    this.themeValue = this.$store.getters.theme
     console.log("home: created");
   },
   activated() {
@@ -69,6 +94,9 @@ export default {
     },
     onCancel() {
       Toast('取消');
+    },
+    selectTheme(e) {
+      this.$store.commit('app/CHANGE_THEME', e)
     },
     selectChange(e) {
       console.log(e);

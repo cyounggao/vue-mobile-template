@@ -54,14 +54,28 @@ export default {
   },
   data() {
     return {
-      columns: [],
       showPicker: false,
       defaultIndex: "",
       valueDesc: "",
     };
   },
-  created() {
-    this.list.length && this.initData(this.list);
+  computed: {
+    columns() {
+      if (this.list.length) {
+        return this.list.map((item, index) => {
+          if (item[this.valueName] === this.value) {
+            this.defaultIndex = index;
+            this.valueDesc = item[this.labelName];
+          }
+          return {
+            text: item[this.labelName],
+            value: item[this.valueName],
+          };
+        });
+      } else{
+        return []
+      }
+    },
   },
   methods: {
     openPicker() {
@@ -85,12 +99,7 @@ export default {
       this.$emit("input", e[this.valueName]);
       this.$emit("selectChange", e[this.valueName]);
     },
-  },
-  watch: {
-    list(val) {
-      val.length && this.initData(val);
-    },
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>

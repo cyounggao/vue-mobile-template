@@ -1,10 +1,10 @@
 // 切换主题
+import { isObj } from '../utils'
 const switchTheme = (theme) => {
-  if (Object.prototype.toString.call(theme) !== '[object Object]') {
-    return
-  }
-  for (let key in theme) {
-    document.body.style.setProperty('--' + key, theme[key])
+  if (isObj(theme)) {
+    for (let key in theme) {
+      document.body.style.setProperty('--' + key, theme[key])
+    }
   }
 }
 export default switchTheme
