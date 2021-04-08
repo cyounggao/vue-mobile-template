@@ -1,5 +1,5 @@
 import switchTheme from '@/utils/theme.js'
-import { isObj } from '@/utils'
+import util from '@/utils'
 
 const state = {
   requserCount: 0, // 网络请求计数
@@ -49,7 +49,7 @@ const mutations = {
   },
   //修改主题配置
   CHANGE_THEME_CONFIG: (state, value) => {
-    if (isObj(value)) {
+    if (util.isObj(value)) {
       state.themeConfigObj = value
       switchTheme(value[state.theme])
     }

@@ -4,7 +4,7 @@
       <p v-for="item in 4" :key="item">头部</p>
     </div>
     <div class="wrap">
-      <p @click="pageAction('/list')">去列表页</p>
+      <p v-confirm="{msg: '确定要跳转吗？',fun: pageAction,data: '/list'}">去列表页</p>
       <down-select
         label="选择主题"
         :list="themeConfigOptions"
@@ -32,12 +32,9 @@
         v-model="selectValue1"
         @selectChange="selectChange"
       ></tiled-select>
-      <down-select
-        label="下拉选择"
-        :list="list"
-        v-model="selectValue"
-        @selectChange="selectChange"
-      />
+      <down-select label="下拉选择" :list="list" v-model="selectValue" @selectChange="selectChange" />
+      <van-button type="primary" size="small" @click="countdownValue = true">开始倒计时</van-button>
+      <countdown :visible="countdownValue" :limit="5" @countdownOver="countdownOver"></countdown>
     </div>
     <van-tabbar v-model="active">
       <van-tabbar-item icon="home-o">首页</van-tabbar-item>
@@ -52,12 +49,14 @@
 import { getDemo } from "@/api/home.js";
 import tiledSelect from "@/components/common/tiledSelect";
 import downSelect from "@/components/common/downSelect";
-import { Toast } from 'vant'
+import countdown from "@/components/common/countdown";
+import { Toast } from "vant";
 export default {
   name: "Home",
   components: {
     tiledSelect,
-    downSelect
+    downSelect,
+    countdown
   },
   data() {
     return {
@@ -70,16 +69,17 @@ export default {
         { name: "选项四", value: "4" },
       ],
       themeConfigOptions: [
-        { name: '橙色',value: 'orange'},
-        { name: '绿色',value: 'green'}
+        { name: "橙色", value: "orange" },
+        { name: "绿色", value: "green" },
       ],
-      themeValue: '',
+      themeValue: "",
       selectValue: "2",
       selectValue1: "",
+      countdownValue: false
     };
   },
   created() {
-    this.themeValue = this.$store.getters.theme
+    this.themeValue = this.$store.getters.theme;
     console.log("home: created");
   },
   activated() {
@@ -93,10 +93,10 @@ export default {
       Toast(`当前值：${value}, 当前索引：${index}`);
     },
     onCancel() {
-      Toast('取消');
+      Toast("取消");
     },
     selectTheme(e) {
-      this.$store.commit('app/CHANGE_THEME', e)
+      this.$store.commit("app/CHANGE_THEME", e);
     },
     selectChange(e) {
       console.log(e);
@@ -105,6 +105,9 @@ export default {
       getDemo().then((res) => {
         this.list = res.data;
       });
+    },
+    countdownOver() {
+      this.countdownValue = false
     },
     pageAction(url) {
       this.$router.push(url);
@@ -142,5 +145,4 @@ export default {
   text-align: center;
   font-size: 0.32rem;
 }
-
 </style>
