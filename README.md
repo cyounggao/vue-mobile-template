@@ -1,29 +1,29 @@
-# vue-mobile-template
+## 启动项目
 
-## Project setup
-```
+```bash
+# 安装依赖
 npm install
-```
 
-### Compiles and hot-reloads for development
-```
+# npm 下载速度慢的问题可以修改npm源后再 npm install
+npm config set registry https://registry.npm.taobao.org
+
+# 启动开发环境
 npm run dev
 ```
 
-### Compiles and minifies for production
-```
+## 打包生产
+
+```bash
+# 测试环境
+npm run test
+
+# 生产环境
 npm run build
 ```
 
-### Compiles and minifies for test
-```
-npm run test
-```
+## 其他
 
-### Lints and fixes files
-```
+```bash
+# 代码格式检查，并自动修复
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

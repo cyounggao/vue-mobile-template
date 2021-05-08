@@ -11,12 +11,12 @@ const service = axios.create({
 })
 // 发请求之前
 /* config参数
-	noLoad: 请求是否不显示加载框，默认显示
-	formData: post时参数是否用form-data形式传，默认json形式
-	method: 请求方式，默认post
-	data: 请求的参数
-	seq： axios串联时的先后顺序，f:第一个(执行完毕后计数不减1) / m:中间的 / l:最后一个(执行前计数不加1),默认m
-*/
+ * noLoad: 请求是否不显示加载框，默认显示
+ * formData: post时参数是否用form-data形式传，默认json形式
+ * method: 请求方式，默认post
+ * data: 请求的参数
+ * seq： axios串联时的先后顺序，f:第一个(执行完毕后计数不减1) / m:中间的 / l:最后一个(执行前计数不加1),默认m
+ */
 service.interceptors.request.use(
   config => {
     config.method = config.method || 'post'
@@ -31,7 +31,7 @@ service.interceptors.request.use(
       config.params = qs.stringify(config.data, {
         indices: false
       })
-      config.paramsSerializer = function(params) {
+      config.paramsSerializer = function (params) {
         return params
       }
     }

@@ -1,5 +1,11 @@
-import Vue from 'vue'
 const util = {
+    install(Vue) {
+        Object.keys(util).forEach(key => {
+            if(key !== 'install'){
+                Vue.prototype[`$${key}`] = util[key]
+            }
+          })
+    },
     // 后端返回的富文本里px单位转rem
     changeToRem(content, size = 50) {
         if (!content) return
@@ -13,7 +19,7 @@ const util = {
     isObj(obj) {
         return Object.prototype.toString.call(obj) === '[object Object]'
     },
-    //数组转映射对象（后端同时要传label和code）
+    //数组转映射对象（后端需要同时要传label和code）
     arrToObj(arr, label = 'label', code = 'code') {
         let obj = {}
         arr.forEach(item => {
@@ -22,5 +28,4 @@ const util = {
         return obj
     }
 }
-Vue.prototype.$util = util
 export default util

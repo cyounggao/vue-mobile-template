@@ -34,7 +34,7 @@
       ></tiled-select>
       <down-select label="下拉选择" :list="list" v-model="selectValue" @selectChange="selectChange" />
       <van-button type="primary" size="small" @click="countdownValue = true">开始倒计时</van-button>
-      <countdown :visible="countdownValue" :limit="5" @countdownOver="countdownOver"></countdown>
+      <countdown :visible="countdownValue" :limit="3" @countdownOver="countdownOver"></countdown>
     </div>
     <van-tabbar v-model="active">
       <van-tabbar-item icon="home-o">首页</van-tabbar-item>
@@ -50,13 +50,12 @@ import { getDemo } from "@/api/home.js";
 import tiledSelect from "@/components/common/tiledSelect";
 import downSelect from "@/components/common/downSelect";
 import countdown from "@/components/common/countdown";
-import { Toast } from "vant";
 export default {
   name: "Home",
   components: {
     tiledSelect,
     downSelect,
-    countdown
+    countdown,
   },
   data() {
     return {
@@ -75,7 +74,7 @@ export default {
       themeValue: "",
       selectValue: "2",
       selectValue1: "",
-      countdownValue: false
+      countdownValue: false,
     };
   },
   created() {
@@ -86,15 +85,6 @@ export default {
     console.log("home: activated");
   },
   methods: {
-    onConfirm(value, index) {
-      Toast(`当前值：${value}, 当前索引：${index}`);
-    },
-    onChange(picker, value, index) {
-      Toast(`当前值：${value}, 当前索引：${index}`);
-    },
-    onCancel() {
-      Toast("取消");
-    },
     selectTheme(e) {
       this.$store.commit("app/CHANGE_THEME", e);
     },
@@ -107,7 +97,7 @@ export default {
       });
     },
     countdownOver() {
-      this.countdownValue = false
+      this.countdownValue = false;
     },
     pageAction(url) {
       this.$router.push(url);
